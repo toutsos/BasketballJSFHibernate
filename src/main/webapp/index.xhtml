@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title> main</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body style="">
+        <h3>Welcome to our team</h3>
+        <hr/>
+        <h:form>
+            <p:growl>
+                <p:autoUpdate />
+            </p:growl>
+            <p:panelMenu style="width:300px">
+                
+                <p:submenu label="Team Information">
+                    <p:submenu label="Player Information">
+                        <p:menuitem value="Player List" action="player/List.xhtml" />
+                    </p:submenu>
+                        
+                    <p:submenu label="Coach Information">
+                        <p:menuitem value="Current Coach"/>
+                        <p:menuitem value="Coach History" action="coach/List.xhtml"/>
+                        <p:menuitem value="Add new Coach"/>
+                    </p:submenu>
+                        
+                    <p:submenu label="Stadium Information">
+                        <p:submenu label="Stadium List"/>
+                    </p:submenu>
+                </p:submenu>
+                
+                <p:submenu label="Training Information">
+                    <p:menuitem value="Traininig List" action="training/List.xhtml"/>
+                </p:submenu>
+                
+                <p:separator />
+                
+                <p:submenu label="Game Information" >
+                     <p:menuitem value="Game List" action="game/List.xhtml"/>
+                </p:submenu>
+                
+            </p:panelMenu>
+        </h:form>
+    </h:body>   
+</html>
+

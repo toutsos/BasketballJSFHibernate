@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlayerGameViewDlg" widgetVar="PlayerGameViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlayerGameTitle}">
+            <h:form id="PlayerGameViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{playerGameController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlayerGameLabel_id}"/>
+                        <h:outputText value="#{playerGameController.selected.id}" title="#{bundle.ViewPlayerGameTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPlayerGameLabel_points}"/>
+                        <h:outputText value="#{playerGameController.selected.points}" title="#{bundle.ViewPlayerGameTitle_points}"/>
+                        <h:outputText value="#{bundle.ViewPlayerGameLabel_idgame}"/>
+                        <h:outputText value="#{playerGameController.selected.idgame}" title="#{bundle.ViewPlayerGameTitle_idgame}"/>
+                        <h:outputText value="#{bundle.ViewPlayerGameLabel_idplayer}"/>
+                        <h:outputText value="#{playerGameController.selected.idplayer}" title="#{bundle.ViewPlayerGameTitle_idplayer}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PlayerGameViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

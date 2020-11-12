@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlayerTrainingViewDlg" widgetVar="PlayerTrainingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlayerTrainingTitle}">
+            <h:form id="PlayerTrainingViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{playerTrainingController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlayerTrainingLabel_id}"/>
+                        <h:outputText value="#{playerTrainingController.selected.id}" title="#{bundle.ViewPlayerTrainingTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPlayerTrainingLabel_playerRank}"/>
+                        <h:outputText value="#{playerTrainingController.selected.playerRank}" title="#{bundle.ViewPlayerTrainingTitle_playerRank}"/>
+                        <h:outputText value="#{bundle.ViewPlayerTrainingLabel_playerId}"/>
+                        <h:outputText value="#{playerTrainingController.selected.playerId}" title="#{bundle.ViewPlayerTrainingTitle_playerId}"/>
+                        <h:outputText value="#{bundle.ViewPlayerTrainingLabel_trainingId}"/>
+                        <h:outputText value="#{playerTrainingController.selected.trainingId}" title="#{bundle.ViewPlayerTrainingTitle_trainingId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PlayerTrainingViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

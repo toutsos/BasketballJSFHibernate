@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlayerEditDlg" widgetVar="PlayerEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPlayerTitle}">
+            <h:form id="PlayerEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{playerController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPlayerLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{playerController.selected.name}" title="#{bundle.EditPlayerTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditPlayerLabel_weight}" for="weight" />
+                        <p:inputText id="weight" value="#{playerController.selected.weight}" title="#{bundle.EditPlayerTitle_weight}" />
+                        <p:outputLabel value="#{bundle.EditPlayerLabel_height}" for="height" />
+                        <p:inputText id="height" value="#{playerController.selected.height}" title="#{bundle.EditPlayerTitle_height}" />
+                        <p:outputLabel value="#{bundle.EditPlayerLabel_age}" for="age" />
+                        <p:inputText id="age" value="#{playerController.selected.age}" title="#{bundle.EditPlayerTitle_age}" />
+                        <p:outputLabel value="#{bundle.EditPlayerLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{playerController.selected.phone}" title="#{bundle.EditPlayerTitle_phone}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{playerController.update}" value="#{bundle.Save}" update="display,:PlayerListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PlayerEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlayerEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

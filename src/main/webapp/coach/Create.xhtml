@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoachCreateDlg" widgetVar="CoachCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCoachTitle}">
+            <h:form id="CoachCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coachController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCoachLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{coachController.selected.id}" title="#{bundle.CreateCoachTitle_id}" required="true" requiredMessage="#{bundle.CreateCoachRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateCoachLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{coachController.selected.name}" title="#{bundle.CreateCoachTitle_name}" />
+                        <p:outputLabel value="#{bundle.CreateCoachLabel_salary}" for="salary" />
+                        <p:inputText id="salary" value="#{coachController.selected.salary}" title="#{bundle.CreateCoachTitle_salary}" />
+                        <p:outputLabel value="#{bundle.CreateCoachLabel_startDate}" for="startDate" />
+                        <p:calendar id="startDate" pattern="MM/dd/yyyy" value="#{coachController.selected.startDate}" title="#{bundle.EditCoachTitle_startDate}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{coachController.create}" value="#{bundle.Save}" update="display,:CoachListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoachCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CoachCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

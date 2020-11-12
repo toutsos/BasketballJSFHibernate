@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GameViewDlg" widgetVar="GameViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewGameTitle}">
+            <h:form id="GameViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gameController.selected != null}">
+                        <h:outputText value="#{bundle.ViewGameLabel_id}"/>
+                        <h:outputText value="#{gameController.selected.id}" title="#{bundle.ViewGameTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewGameLabel_datetime}"/>
+                        <h:outputText value="#{gameController.selected.datetime}" title="#{bundle.ViewGameTitle_datetime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewGameLabel_opponent}"/>
+                        <h:outputText value="#{gameController.selected.opponent}" title="#{bundle.ViewGameTitle_opponent}"/>
+                        <h:outputText value="#{bundle.ViewGameLabel_gameStadiumid}"/>
+                        <h:outputText value="#{gameController.selected.gameStadiumid}" title="#{bundle.ViewGameTitle_gameStadiumid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="GameViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

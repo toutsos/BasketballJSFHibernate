@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlayerGameEditDlg" widgetVar="PlayerGameEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPlayerGameTitle}">
+            <h:form id="PlayerGameEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{playerGameController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPlayerGameLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{playerGameController.selected.id}" title="#{bundle.EditPlayerGameTitle_id}" required="true" requiredMessage="#{bundle.EditPlayerGameRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPlayerGameLabel_points}" for="points" />
+                        <p:inputText id="points" value="#{playerGameController.selected.points}" title="#{bundle.EditPlayerGameTitle_points}" />
+                        <p:outputLabel value="#{bundle.EditPlayerGameLabel_idgame}" for="idgame" />
+                        <p:selectOneMenu id="idgame" value="#{playerGameController.selected.idgame}" required="true" requiredMessage="#{bundle.EditPlayerGameRequiredMessage_idgame}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{gameController.itemsAvailableSelectOne}"
+                                           var="idgameItem"
+                                           itemValue="#{idgameItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPlayerGameLabel_idplayer}" for="idplayer" />
+                        <p:selectOneMenu id="idplayer" value="#{playerGameController.selected.idplayer}" required="true" requiredMessage="#{bundle.EditPlayerGameRequiredMessage_idplayer}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{playerController.itemsAvailableSelectOne}"
+                                           var="idplayerItem"
+                                           itemValue="#{idplayerItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{playerGameController.update}" value="#{bundle.Save}" update="display,:PlayerGameListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PlayerGameEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlayerGameEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GameCreateDlg" widgetVar="GameCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGameTitle}">
+            <h:form id="GameCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gameController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateGameLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{gameController.selected.id}" title="#{bundle.CreateGameTitle_id}" required="true" requiredMessage="#{bundle.CreateGameRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateGameLabel_datetime}" for="datetime" />
+                        <p:calendar id="datetime" pattern="MM/dd/yyyy HH:mm:ss" value="#{gameController.selected.datetime}" title="#{bundle.EditGameTitle_datetime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateGameLabel_opponent}" for="opponent" />
+                        <p:inputText id="opponent" value="#{gameController.selected.opponent}" title="#{bundle.CreateGameTitle_opponent}" />
+                        <p:outputLabel value="#{bundle.CreateGameLabel_gameStadiumid}" for="gameStadiumid" />
+                        <p:selectOneMenu id="gameStadiumid" value="#{gameController.selected.gameStadiumid}" >
+                            <f:selectItems value="#{stadiumController.itemsAvailableSelectOne}"
+                                           var="gameStadiumidItem"
+                                           itemValue="#{gameStadiumidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{gameController.create}" value="#{bundle.Save}" update="display,:GameListForm:datalist,:growl" oncomplete="handleSubmit(args,'GameCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GameCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

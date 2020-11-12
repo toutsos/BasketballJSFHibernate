@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlayerTrainingEditDlg" widgetVar="PlayerTrainingEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPlayerTrainingTitle}">
+            <h:form id="PlayerTrainingEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{playerTrainingController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPlayerTrainingLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{playerTrainingController.selected.id}" title="#{bundle.EditPlayerTrainingTitle_id}" required="true" requiredMessage="#{bundle.EditPlayerTrainingRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditPlayerTrainingLabel_playerRank}" for="playerRank" />
+                        <p:inputText id="playerRank" value="#{playerTrainingController.selected.playerRank}" title="#{bundle.EditPlayerTrainingTitle_playerRank}" required="true" requiredMessage="#{bundle.EditPlayerTrainingRequiredMessage_playerRank}"/>
+                        <p:outputLabel value="#{bundle.EditPlayerTrainingLabel_playerId}" for="playerId" />
+                        <p:selectOneMenu id="playerId" value="#{playerTrainingController.selected.playerId}" required="true" requiredMessage="#{bundle.EditPlayerTrainingRequiredMessage_playerId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{playerController.itemsAvailableSelectOne}"
+                                           var="playerIdItem"
+                                           itemValue="#{playerIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPlayerTrainingLabel_trainingId}" for="trainingId" />
+                        <p:selectOneMenu id="trainingId" value="#{playerTrainingController.selected.trainingId}" required="true" requiredMessage="#{bundle.EditPlayerTrainingRequiredMessage_trainingId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{trainingController.itemsAvailableSelectOne}"
+                                           var="trainingIdItem"
+                                           itemValue="#{trainingIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{playerTrainingController.update}" value="#{bundle.Save}" update="display,:PlayerTrainingListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PlayerTrainingEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlayerTrainingEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
