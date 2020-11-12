@@ -39,7 +39,6 @@ public class PlayerController implements Serializable {
         this.selected = selected;
     }
 
-
     private PlayerFacade getFacade() {
         return ejbFacade;
     }
@@ -77,7 +76,6 @@ public class PlayerController implements Serializable {
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
@@ -86,19 +84,6 @@ public class PlayerController implements Serializable {
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
-                String msg = "";
-                Throwable cause = ex.getCause();
-                if (cause != null) {
-                    msg = cause.getLocalizedMessage();
-                }
-                if (msg.length() > 0) {
-                    JsfUtil.addErrorMessage(msg);
-                } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -111,9 +96,6 @@ public class PlayerController implements Serializable {
         return getFacade().findAll();
     }
 
-    public List<Player> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
-    }
 
     @FacesConverter(forClass = Player.class)
     public static class PlayerControllerConverter implements Converter {

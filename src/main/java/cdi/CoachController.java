@@ -27,7 +27,9 @@ public class CoachController implements Serializable {
     private ejb.CoachFacade ejbFacade;
     private List<Coach> items = null;
     private Coach selected;
-
+    private Coach current;
+    
+    
     public CoachController() {
     }
 
@@ -39,19 +41,12 @@ public class CoachController implements Serializable {
         this.selected = selected;
     }
 
-    protected void setEmbeddableKeys() {
-    }
-
-    protected void initializeEmbeddableKey() {
-    }
-
     private CoachFacade getFacade() {
         return ejbFacade;
     }
 
     public Coach prepareCreate() {
         selected = new Coach();
-        initializeEmbeddableKey();
         return selected;
     }
 
@@ -80,10 +75,15 @@ public class CoachController implements Serializable {
         }
         return items;
     }
+    
+    public Coach getCurrent(){
+        items =getFacade().findAll();
+        return current=items.get(items.size()-1);
+    }
 
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);

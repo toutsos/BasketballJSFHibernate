@@ -12,8 +12,6 @@
             <h:form id="PlayerViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{playerController.selected != null}">
-                        
-                        <h:outputText value="#{playerController.selected.id}" title="#{bundle.ViewPlayerTitle_id}"/>
                         <h:outputText value="#{bundle.ViewPlayerLabel_name}"/>
                         <h:outputText value="#{playerController.selected.name}" title="#{bundle.ViewPlayerTitle_name}"/>
                         <h:outputText value="#{bundle.ViewPlayerLabel_weight}"/>

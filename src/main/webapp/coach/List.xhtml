@@ -17,6 +17,7 @@
             <h:form id="CoachListForm">
                 <p:panel header="#{bundle.ListCoachTitle}">
                     <p:dataTable id="datalist" value="#{coachController.items}" var="item"
+                                 
                                  selectionMode="single" selection="#{coachController.selected}"
                                  paginator="true"
                                  rowKey="#{item.id}"
