@@ -4,6 +4,7 @@ import entities.Player;
 import cdi.util.JsfUtil;
 import cdi.util.JsfUtil.PersistAction;
 import ejb.PlayerFacade;
+import entities.Training;
 
 import java.io.Serializable;
 import java.util.List;
@@ -96,6 +97,15 @@ public class PlayerController implements Serializable {
         return getFacade().findAll();
     }
 
+    public List<Player> getPlayerNotInTraining(Training training) {
+        List<Player> players;
+        players = getFacade().playersNotInTraining(training);
+        return players;
+    }
+
+    public List<Player> getSortPlayerFromTrainingNumber() {
+        return getFacade().sortedPlayersFromTotalTrainings();
+    }
 
     @FacesConverter(forClass = Player.class)
     public static class PlayerControllerConverter implements Converter {

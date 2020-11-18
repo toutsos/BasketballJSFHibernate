@@ -4,6 +4,9 @@ import entities.PlayerGame;
 import cdi.util.JsfUtil;
 import cdi.util.JsfUtil.PersistAction;
 import ejb.PlayerGameFacade;
+import entities.Game;
+import entities.Player;
+import cdi.PlayerController;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,10 +21,14 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @Named("playerGameController")
 @SessionScoped
 public class PlayerGameController implements Serializable {
+    
+    @Inject private PlayerController playerController;
+    
 
     @EJB
     private ejb.PlayerGameFacade ejbFacade;
@@ -39,19 +46,12 @@ public class PlayerGameController implements Serializable {
         this.selected = selected;
     }
 
-    protected void setEmbeddableKeys() {
-    }
-
-    protected void initializeEmbeddableKey() {
-    }
-
     private PlayerGameFacade getFacade() {
         return ejbFacade;
     }
 
     public PlayerGame prepareCreate() {
         selected = new PlayerGame();
-        initializeEmbeddableKey();
         return selected;
     }
 
@@ -74,6 +74,18 @@ public class PlayerGameController implements Serializable {
         }
     }
 
+//    public void generatePlayers(Game selected) {
+//        List<Player> players = playerController.getSortPlayerFromTrainingNumber();
+//        try {
+//            for (int i = 0; i < players.size(); i++) {
+//                PlayerGame pg = new PlayerGame(selected, players.get(i));
+//                getFacade().create(pg);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public List<PlayerGame> getItems() {
         if (items == null) {
             items = getFacade().findAll();
@@ -81,9 +93,10 @@ public class PlayerGameController implements Serializable {
         return items;
     }
 
+    
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
@@ -119,6 +132,10 @@ public class PlayerGameController implements Serializable {
 
     public List<PlayerGame> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+    
+    public List<Player> getPlayerFromGame(Game game){
+        return getFacade().getPlayersFromGame(game);
     }
 
     @FacesConverter(forClass = PlayerGame.class)

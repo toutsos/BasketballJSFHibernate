@@ -12,16 +12,19 @@
             <h:form id="TrainingCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{trainingController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTrainingLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{trainingController.selected.id}" title="#{bundle.CreateTrainingTitle_id}" required="true" requiredMessage="#{bundle.CreateTrainingRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateTrainingLabel_dateTimeTraining}" for="dateTimeTraining" />
+                        
+                        <p:outputLabel value="Date - Time" 
+                                       for="dateTimeTraining" 
+                                       />
                         <p:calendar id="dateTimeTraining" pattern="MM/dd/yyyy HH:mm:ss" value="#{trainingController.selected.dateTimeTraining}" title="#{bundle.EditTrainingTitle_dateTimeTraining}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateTrainingLabel_trainingStadiumid}" for="trainingStadiumid" />
-                        <p:selectOneMenu id="trainingStadiumid" value="#{trainingController.selected.trainingStadiumid}" >
+                        
+                        <p:outputLabel value="Available Stadiums" for="trainingStadium" />
+                        <p:selectOneMenu id="trainingStadium" value="#{trainingController.selected.trainingStadium}" >
                             <f:selectItems value="#{stadiumController.itemsAvailableSelectOne}"
-                                           var="trainingStadiumidItem"
-                                           itemValue="#{trainingStadiumidItem}"/>
+                                           var="trainingStadiumItem"
+                                           itemLabel="#{trainingStadiumItem.name}"/>
                         </p:selectOneMenu>
+                   
                     </p:panelGrid>
                     <p:commandButton actionListener="#{trainingController.create}" value="#{bundle.Save}" update="display,:TrainingListForm:datalist,:growl" oncomplete="handleSubmit(args,'TrainingCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TrainingCreateDialog.hide()"/>

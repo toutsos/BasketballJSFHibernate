@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="StadiumListForm">
+            <h:form id="StadiumListForm" style="width:900px; margin: 0 auto" >
                 <p:panel header="#{bundle.ListStadiumTitle}">
                     <p:dataTable id="datalist" value="#{stadiumController.items}" var="item"
                                  selectionMode="single" selection="#{stadiumController.selected}"
@@ -27,14 +27,14 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column visible="false">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListStadiumTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
                         <p:column>
-                            <f:facet name="header">
+                            <f:facet name="header" >
                                 <h:outputText value="#{bundle.ListStadiumTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>

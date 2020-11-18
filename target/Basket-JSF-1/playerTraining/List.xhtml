@@ -55,7 +55,7 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{playerTrainingController.prepareCreate}" update=":PlayerTrainingCreateForm" oncomplete="PF('PlayerTrainingCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PlayerTrainingViewForm" oncomplete="PF('PlayerTrainingViewDialog').show()" disabled="#{empty playerTrainingController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PlayerTrainingEditForm" oncomplete="PF('PlayerTrainingEditDialog').show()" disabled="#{empty playerTrainingController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{playerTrainingController.destroy}" update=":growl,datalist" disabled="#{empty playerTrainingController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{playerTrainingController.destroy}" update=":InsertPlayerTrainingForm" disabled="#{empty playerTrainingController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

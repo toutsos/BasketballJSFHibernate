@@ -5,10 +5,14 @@
  */
 package ejb;
 
+import entities.Game;
+import entities.Player;
 import entities.PlayerGame;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +33,11 @@ public class PlayerGameFacade extends AbstractFacade<PlayerGame> {
         super(PlayerGame.class);
     }
     
+    public List<Player> getPlayersFromGame(Game game){
+        em = getEntityManager();
+        TypedQuery query = em.createQuery("SELECT pg.player from PlayerGame pg where pg.game = :game",Player.class);
+        query.setParameter("game", game);
+        List<Player> players = query.getResultList();
+        return players;
+    }
 }

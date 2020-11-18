@@ -18,28 +18,27 @@
                 
                 <p:submenu label="Team Information">
                     <p:submenu label="Player Information">
-                        <p:menuitem value="Player List" action="player/List.xhtml" />
+                        <p:menuitem value="Player List" url="faces/player/List.xhtml" />
                     </p:submenu>
                         
                     <p:submenu label="Coach Information">
-                        <p:menuitem value="Current Coach"/>
-                        <p:menuitem value="Coach History" action="coach/List.xhtml"/>
-                        <p:menuitem value="Add new Coach"/>
+                        <p:menuitem value="Current Coach" url="faces/coach/CurrentCoach.xhtml"/>
+                        <p:menuitem value="Coach List" url="faces/coach/List.xhtml"/>
                     </p:submenu>
                         
                     <p:submenu label="Stadium Information">
-                        <p:submenu label="Stadium List"/>
+                        <p:menuitem value="Stadium List" url="faces/stadium/List.xhtml"/>
                     </p:submenu>
                 </p:submenu>
                 
                 <p:submenu label="Training Information">
-                    <p:menuitem value="Traininig List" action="training/List.xhtml"/>
+                    <p:menuitem value="Training List" url="faces/training/List.xhtml"/>
                 </p:submenu>
                 
                 <p:separator />
                 
-                <p:submenu label="Game Information" >
-                     <p:menuitem value="Game List" action="game/List.xhtml"/>
+                <p:submenu label="Game Information">
+                     <p:menuitem value="Game List" url="faces/game/List.xhtml"/>
                 </p:submenu>
                 
             </p:panelMenu>

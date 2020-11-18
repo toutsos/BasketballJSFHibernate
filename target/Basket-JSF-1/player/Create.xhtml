@@ -12,14 +12,19 @@
             <h:form id="PlayerCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{playerController.selected != null}">
+                        
                         <p:outputLabel value="#{bundle.CreatePlayerLabel_name}" for="name" />
                         <p:inputText id="name" value="#{playerController.selected.name}" title="#{bundle.CreatePlayerTitle_name}" />
+                        
                         <p:outputLabel value="#{bundle.CreatePlayerLabel_weight}" for="weight" />
                         <p:inputText id="weight" value="#{playerController.selected.weight}" title="#{bundle.CreatePlayerTitle_weight}" />
+                        
                         <p:outputLabel value="#{bundle.CreatePlayerLabel_height}" for="height" />
                         <p:inputText id="height" value="#{playerController.selected.height}" title="#{bundle.CreatePlayerTitle_height}" />
+                        
                         <p:outputLabel value="#{bundle.CreatePlayerLabel_age}" for="age" />
                         <p:inputText id="age" value="#{playerController.selected.age}" title="#{bundle.CreatePlayerTitle_age}" />
+                        
                         <p:outputLabel value="#{bundle.CreatePlayerLabel_phone}" for="phone" />
                         <p:inputText id="phone" value="#{playerController.selected.phone}" title="#{bundle.CreatePlayerTitle_phone}" />
                     </p:panelGrid>

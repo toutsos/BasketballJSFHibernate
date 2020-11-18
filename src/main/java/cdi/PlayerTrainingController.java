@@ -4,6 +4,8 @@ import entities.PlayerTraining;
 import cdi.util.JsfUtil;
 import cdi.util.JsfUtil.PersistAction;
 import ejb.PlayerTrainingFacade;
+import entities.Player;
+import entities.Training;
 
 import java.io.Serializable;
 import java.util.List;
@@ -39,19 +41,14 @@ public class PlayerTrainingController implements Serializable {
         this.selected = selected;
     }
 
-    protected void setEmbeddableKeys() {
-    }
-
-    protected void initializeEmbeddableKey() {
-    }
-
     private PlayerTrainingFacade getFacade() {
         return ejbFacade;
     }
 
-    public PlayerTraining prepareCreate() {
+    public PlayerTraining prepareCreate(Training training) {
         selected = new PlayerTraining();
-        initializeEmbeddableKey();
+        selected.setTraining(training);
+        System.out.println(selected.getTraining());
         return selected;
     }
 
@@ -80,10 +77,28 @@ public class PlayerTrainingController implements Serializable {
         }
         return items;
     }
+    
+    
+    public List<Player> getPlayersTraining(Training training){
+        List<Player> players;
+        players = getFacade().getPlayerFromTraining(training);
+        return players;
+    }
+    
+    public List<Player> getPlayersFromTraining(Training training){
+        List<Player> players;
+        players = getFacade().getPlayerFromTraining(training);
+        return players;
+    }
+    
+    public int getRankForPlayer(Training training,Player player){
+      
+            int rank = getFacade().getRankForPlayer(training, player);
+            return rank;
+    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
@@ -120,6 +135,7 @@ public class PlayerTrainingController implements Serializable {
     public List<PlayerTraining> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
 
     @FacesConverter(forClass = PlayerTraining.class)
     public static class PlayerTrainingControllerConverter implements Converter {

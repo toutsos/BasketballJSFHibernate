@@ -8,18 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="TrainingViewDlg" widgetVar="TrainingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTrainingTitle}">
+        <p:dialog id="TrainingViewDlg" widgetVar="TrainingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Training Details" style="">
             <h:form id="TrainingViewForm">
                 <h:panelGroup id="display">
+                  
                     <p:panelGrid columns="2" rendered="#{trainingController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTrainingLabel_id}"/>
-                        <h:outputText value="#{trainingController.selected.id}" title="#{bundle.ViewTrainingTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewTrainingLabel_dateTimeTraining}"/>
+                        
+                        <h:outputText value="Date-Time"/>
+                        
                         <h:outputText value="#{trainingController.selected.dateTimeTraining}" title="#{bundle.ViewTrainingTitle_dateTimeTraining}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewTrainingLabel_trainingStadiumid}"/>
-                        <h:outputText value="#{trainingController.selected.trainingStadiumid}" title="#{bundle.ViewTrainingTitle_trainingStadiumid}"/>
+                        
+                        <h:outputText value="Stadium"/>
+                        
+                        <h:outputText value="#{trainingController.selected.trainingStadium.name}" title="#{bundle.ViewTrainingTitle_trainingStadiumid}"/>
+                    
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="TrainingViewDialog.hide()"/>
                 </h:panelGroup>

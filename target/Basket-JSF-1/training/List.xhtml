@@ -10,12 +10,13 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListTrainingTitle}"></h:outputText>
+            <h:outputText value="Trainings"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
             <h:form id="TrainingListForm">
-                <p:panel header="#{bundle.ListTrainingTitle}">
+                <p:panel header="Trainings">
+                    
                     <p:dataTable id="datalist" value="#{trainingController.items}" var="item"
                                  selectionMode="single" selection="#{trainingController.selected}"
                                  paginator="true"
@@ -24,34 +25,39 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton insertPlayersButton playerTrainingButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton insertPlayersButton playerTrainingButton"/>
 
-                        <p:column>
+                        <p:column visible="false">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTrainingTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTrainingTitle_dateTimeTraining}"/>
+                                <h:outputText value="Date-Time"/>
                             </f:facet>
                             <h:outputText value="#{item.dateTimeTraining}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTrainingTitle_trainingStadiumid}"/>
+                                <h:outputText value="Stadium"/>
                             </f:facet>
-                            <h:outputText value="#{item.trainingStadiumid}"/>
+                            <h:outputText value="#{item.trainingStadium.name}"/>
                         </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{trainingController.prepareCreate}" update=":TrainingCreateForm" oncomplete="PF('TrainingCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TrainingViewForm" oncomplete="PF('TrainingViewDialog').show()" disabled="#{empty trainingController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TrainingEditForm" oncomplete="PF('TrainingEditDialog').show()" disabled="#{empty trainingController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{trainingController.destroy}" update=":growl,datalist" disabled="#{empty trainingController.selected}"/>
+                            <p:commandButton id="insertPlayersButton" icon="ui-icon-add-circle"  value="Add Players" actionListener="#{playerTrainingController.prepareCreate(trainingController.selected)}" update=":PlayerTrainingCreateForm" oncomplete="PF('PlayerTrainingCreateDialog').show()" disabled="#{empty trainingController.selected}"/>
+                            <p:commandButton id="playerTrainingButton" icon="ac-unit"  value="List of Players" update=":PlayerTrainingViewForm" oncomplete="PF('PlayerTrainingViewDialog').show()" disabled="#{empty trainingController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
@@ -60,6 +66,9 @@
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <ui:include src="InsertPlayerTrainingForm.xhtml"/>
+            <ui:include src="PlayerTrainingForm.xhtml"/>
+            
         </ui:define>
     </ui:composition>
 

@@ -12,12 +12,10 @@
             <h:form id="TrainingEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{trainingController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTrainingLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{trainingController.selected.id}" title="#{bundle.EditTrainingTitle_id}" required="true" requiredMessage="#{bundle.EditTrainingRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditTrainingLabel_dateTimeTraining}" for="dateTimeTraining" />
                         <p:calendar id="dateTimeTraining" pattern="MM/dd/yyyy HH:mm:ss" value="#{trainingController.selected.dateTimeTraining}" title="#{bundle.EditTrainingTitle_dateTimeTraining}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditTrainingLabel_trainingStadiumid}" for="trainingStadiumid" />
-                        <p:selectOneMenu id="trainingStadiumid" value="#{trainingController.selected.trainingStadiumid}" >
+                        <p:selectOneMenu id="trainingStadiumid" value="#{trainingController.selected.trainingStadium}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{stadiumController.itemsAvailableSelectOne}"
                                            var="trainingStadiumidItem"

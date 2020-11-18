@@ -12,8 +12,6 @@
             <h:form id="CoachViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{coachController.selected != null}">
-                        <h:outputText value="#{bundle.ViewCoachLabel_id}"/>
-                        <h:outputText value="#{coachController.selected.id}" title="#{bundle.ViewCoachTitle_id}"/>
                         <h:outputText value="#{bundle.ViewCoachLabel_name}"/>
                         <h:outputText value="#{coachController.selected.name}" title="#{bundle.ViewCoachTitle_name}"/>
                         <h:outputText value="#{bundle.ViewCoachLabel_salary}"/>

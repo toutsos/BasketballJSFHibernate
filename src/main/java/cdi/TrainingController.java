@@ -4,6 +4,7 @@ import entities.Training;
 import cdi.util.JsfUtil;
 import cdi.util.JsfUtil.PersistAction;
 import ejb.TrainingFacade;
+import entities.Player;
 
 import java.io.Serializable;
 import java.util.List;
@@ -39,19 +40,12 @@ public class TrainingController implements Serializable {
         this.selected = selected;
     }
 
-    protected void setEmbeddableKeys() {
-    }
-
-    protected void initializeEmbeddableKey() {
-    }
-
     private TrainingFacade getFacade() {
         return ejbFacade;
     }
 
     public Training prepareCreate() {
         selected = new Training();
-        initializeEmbeddableKey();
         return selected;
     }
 
@@ -83,7 +77,6 @@ public class TrainingController implements Serializable {
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);

@@ -28,24 +28,34 @@ import javax.persistence.Table;
     @NamedQuery(name = "PlayerGame.findAll", query = "SELECT p FROM PlayerGame p"),
     @NamedQuery(name = "PlayerGame.findById", query = "SELECT p FROM PlayerGame p WHERE p.id = :id"),
     @NamedQuery(name = "PlayerGame.findByPoints", query = "SELECT p FROM PlayerGame p WHERE p.points = :points")})
+
 public class PlayerGame implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Column(name = "points")
     private Integer points;
-    @JoinColumn(name = "idgame", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Game idgame;
-    @JoinColumn(name = "idplayer", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Player idplayer;
+    
+    @JoinColumn(name = "idgame")
+    @ManyToOne
+    private Game game;
+    
+    @JoinColumn(name = "idplayer")
+    @ManyToOne
+    private Player player;
 
     public PlayerGame() {
+    }
+    
+    public PlayerGame(Game game, Player player){
+        this.player = player;
+        this.game = game;
     }
 
     public PlayerGame(Integer id) {
@@ -68,21 +78,22 @@ public class PlayerGame implements Serializable {
         this.points = points;
     }
 
-    public Game getIdgame() {
-        return idgame;
+    public Game getGame() {
+        return game;
     }
 
-    public void setIdgame(Game idgame) {
-        this.idgame = idgame;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
-    public Player getIdplayer() {
-        return idplayer;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setIdplayer(Player idplayer) {
-        this.idplayer = idplayer;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
+    
 
     @Override
     public int hashCode() {

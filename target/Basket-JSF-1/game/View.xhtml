@@ -12,16 +12,19 @@
             <h:form id="GameViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{gameController.selected != null}">
-                        <h:outputText value="#{bundle.ViewGameLabel_id}"/>
-                        <h:outputText value="#{gameController.selected.id}" title="#{bundle.ViewGameTitle_id}"/>
+                       
                         <h:outputText value="#{bundle.ViewGameLabel_datetime}"/>
+                        
                         <h:outputText value="#{gameController.selected.datetime}" title="#{bundle.ViewGameTitle_datetime}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        
                         <h:outputText value="#{bundle.ViewGameLabel_opponent}"/>
                         <h:outputText value="#{gameController.selected.opponent}" title="#{bundle.ViewGameTitle_opponent}"/>
+                        
                         <h:outputText value="#{bundle.ViewGameLabel_gameStadiumid}"/>
-                        <h:outputText value="#{gameController.selected.gameStadiumid}" title="#{bundle.ViewGameTitle_gameStadiumid}"/>
+                        <h:outputText value="#{gameController.selected.gameStadium.name}" title="#{bundle.ViewGameTitle_gameStadiumid}"/>
+                    
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="GameViewDialog.hide()"/>
                 </h:panelGroup>

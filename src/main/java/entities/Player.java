@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,6 +36,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Player.findByAge", query = "SELECT p FROM Player p WHERE p.age = :age"),
     @NamedQuery(name = "Player.findByPhone", query = "SELECT p FROM Player p WHERE p.phone = :phone"),
     @NamedQuery(name = "Player.findByTrainingsNumber", query = "SELECT p FROM Player p WHERE p.trainingsNumber = :trainingsNumber")})
+
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,24 +46,31 @@ public class Player implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Size(max = 20)
     @Column(name = "name")
     private String name;
+    
     @Column(name = "weight")
     private Integer weight;
+    
     @Column(name = "height")
     private Integer height;
+    
     @Column(name = "age")
     private Integer age;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 42)
     @Column(name = "phone")
     private String phone;
+    
     @Column(name = "trainings_number")
     private Integer trainingsNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "playerId")
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
     private List<PlayerTraining> playerTrainingList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idplayer")
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
     private List<PlayerGame> playerGameList;
 
     public Player() {

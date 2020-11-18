@@ -4,6 +4,7 @@ import entities.Game;
 import cdi.util.JsfUtil;
 import cdi.util.JsfUtil.PersistAction;
 import ejb.GameFacade;
+import entities.Player;
 
 import java.io.Serializable;
 import java.util.List;
@@ -39,19 +40,12 @@ public class GameController implements Serializable {
         this.selected = selected;
     }
 
-    protected void setEmbeddableKeys() {
-    }
-
-    protected void initializeEmbeddableKey() {
-    }
-
     private GameFacade getFacade() {
         return ejbFacade;
     }
 
     public Game prepareCreate() {
         selected = new Game();
-        initializeEmbeddableKey();
         return selected;
     }
 
@@ -73,6 +67,14 @@ public class GameController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void deleteGame(Game selected){
+        try {
+            getFacade().deleteGame(selected);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<Game> getItems() {
         if (items == null) {
@@ -80,10 +82,9 @@ public class GameController implements Serializable {
         }
         return items;
     }
-
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
@@ -92,6 +93,8 @@ public class GameController implements Serializable {
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
+                System.out.println("---------------persist exception------------");
+                ex.printStackTrace();
                 String msg = "";
                 Throwable cause = ex.getCause();
                 if (cause != null) {

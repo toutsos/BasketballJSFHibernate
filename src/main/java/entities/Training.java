@@ -37,19 +37,23 @@ import javax.persistence.TemporalType;
 public class Training implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Column(name = "DateTimeTraining")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTimeTraining;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainingId")
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "training")
     private List<PlayerTraining> playerTrainingList;
-    @JoinColumn(name = "trainingStadium_id", referencedColumnName = "id")
+    
+    @JoinColumn(name = "trainingStadium_id")
     @ManyToOne
-    private Stadium trainingStadiumid;
+    private Stadium trainingStadium;
 
     public Training() {
     }
@@ -82,12 +86,12 @@ public class Training implements Serializable {
         this.playerTrainingList = playerTrainingList;
     }
 
-    public Stadium getTrainingStadiumid() {
-        return trainingStadiumid;
+    public Stadium getTrainingStadium() {
+        return trainingStadium;
     }
 
-    public void setTrainingStadiumid(Stadium trainingStadiumid) {
-        this.trainingStadiumid = trainingStadiumid;
+    public void setTrainingStadium (Stadium trainingStadium) {
+        this.trainingStadium = trainingStadium;
     }
 
     @Override

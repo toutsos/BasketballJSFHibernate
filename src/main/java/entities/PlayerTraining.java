@@ -29,24 +29,28 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "PlayerTraining.findAll", query = "SELECT p FROM PlayerTraining p"),
     @NamedQuery(name = "PlayerTraining.findById", query = "SELECT p FROM PlayerTraining p WHERE p.id = :id"),
     @NamedQuery(name = "PlayerTraining.findByPlayerRank", query = "SELECT p FROM PlayerTraining p WHERE p.playerRank = :playerRank")})
+
 public class PlayerTraining implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @Basic
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
-    @NotNull
     @Column(name = "playerRank")
     private int playerRank;
-    @JoinColumn(name = "playerId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Player playerId;
-    @JoinColumn(name = "trainingId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Training trainingId;
+    
+    @JoinColumn(name = "playerId")
+    @ManyToOne
+    private Player player;
+    
+    @JoinColumn(name = "trainingId")
+    @ManyToOne
+    private Training training;
 
     public PlayerTraining() {
     }
@@ -76,20 +80,20 @@ public class PlayerTraining implements Serializable {
         this.playerRank = playerRank;
     }
 
-    public Player getPlayerId() {
-        return playerId;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setPlayerId(Player playerId) {
-        this.playerId = playerId;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
-    public Training getTrainingId() {
-        return trainingId;
+    public Training getTraining() {
+        return training;
     }
 
-    public void setTrainingId(Training trainingId) {
-        this.trainingId = trainingId;
+    public void setTraining (Training training) {
+        this.training = training;
     }
 
     @Override

@@ -40,11 +40,14 @@ public class Coach implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Size(max = 20)
     @Column(name = "name")
     private String name;
+    
     @Column(name = "salary")
     private Integer salary;
+    
     @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
     private Date startDate;

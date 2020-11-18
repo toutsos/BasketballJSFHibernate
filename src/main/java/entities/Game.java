@@ -36,26 +36,32 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Game.findById", query = "SELECT g FROM Game g WHERE g.id = :id"),
     @NamedQuery(name = "Game.findByDatetime", query = "SELECT g FROM Game g WHERE g.datetime = :datetime"),
     @NamedQuery(name = "Game.findByOpponent", query = "SELECT g FROM Game g WHERE g.opponent = :opponent")})
+
 public class Game implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @Basic(optional = true)
     @Column(name = "id")
     private Integer id;
+    
     @Column(name = "datetime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;
+    
     @Size(max = 20)
     @Column(name = "opponent")
     private String opponent;
-    @JoinColumn(name = "gameStadium_id", referencedColumnName = "id")
+    
     @ManyToOne
-    private Stadium gameStadiumid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idgame")
+    @JoinColumn(name = "gameStadium_id")
+    private Stadium gameStadium;
+    
+    @OneToMany(mappedBy = "game",cascade = CascadeType.ALL)
     private List<PlayerGame> playerGameList;
-
+   
     public Game() {
     }
 
@@ -87,12 +93,12 @@ public class Game implements Serializable {
         this.opponent = opponent;
     }
 
-    public Stadium getGameStadiumid() {
-        return gameStadiumid;
+    public Stadium getGameStadium() {
+        return gameStadium;
     }
 
-    public void setGameStadiumid(Stadium gameStadiumid) {
-        this.gameStadiumid = gameStadiumid;
+    public void setGameStadium(Stadium gameStadium) {
+        this.gameStadium = gameStadium;
     }
 
     public List<PlayerGame> getPlayerGameList() {

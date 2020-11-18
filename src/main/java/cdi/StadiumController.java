@@ -39,19 +39,12 @@ public class StadiumController implements Serializable {
         this.selected = selected;
     }
 
-    protected void setEmbeddableKeys() {
-    }
-
-    protected void initializeEmbeddableKey() {
-    }
-
     private StadiumFacade getFacade() {
         return ejbFacade;
     }
 
     public Stadium prepareCreate() {
         selected = new Stadium();
-        initializeEmbeddableKey();
         return selected;
     }
 
@@ -83,7 +76,6 @@ public class StadiumController implements Serializable {
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
-            setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);

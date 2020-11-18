@@ -7,13 +7,10 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
-        <p:dialog id="CoachCreateDlg" widgetVar="CoachCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCoachTitle}">
+        <p:dialog id="CoachCreateDlg" widgetVar="CoachCreateDialog" appendTo="@(body)" modal="true" resizable="false" header="#{bundle.CreateCoachTitle}">
             <h:form id="CoachCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{coachController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCoachLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{coachController.selected.id}" title="#{bundle.CreateCoachTitle_id}" required="true" requiredMessage="#{bundle.CreateCoachRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateCoachLabel_name}" for="name" />
                         <p:inputText id="name" value="#{coachController.selected.name}" title="#{bundle.CreateCoachTitle_name}" />
                         <p:outputLabel value="#{bundle.CreateCoachLabel_salary}" for="salary" />

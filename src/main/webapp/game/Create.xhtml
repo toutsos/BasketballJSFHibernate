@@ -12,21 +12,23 @@
             <h:form id="GameCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{gameController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateGameLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{gameController.selected.id}" title="#{bundle.CreateGameTitle_id}" required="true" requiredMessage="#{bundle.CreateGameRequiredMessage_id}"/>
+                       
                         <p:outputLabel value="#{bundle.CreateGameLabel_datetime}" for="datetime" />
                         <p:calendar id="datetime" pattern="MM/dd/yyyy HH:mm:ss" value="#{gameController.selected.datetime}" title="#{bundle.EditGameTitle_datetime}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateGameLabel_opponent}" for="opponent" />
+                        
+                        <p:outputLabel value="Opponent" for="opponent" />
                         <p:inputText id="opponent" value="#{gameController.selected.opponent}" title="#{bundle.CreateGameTitle_opponent}" />
-                        <p:outputLabel value="#{bundle.CreateGameLabel_gameStadiumid}" for="gameStadiumid" />
-                        <p:selectOneMenu id="gameStadiumid" value="#{gameController.selected.gameStadiumid}" >
-                            <f:selectItems value="#{stadiumController.itemsAvailableSelectOne}"
+                        
+                        <p:outputLabel value="Stadium" for="gameStadium" />
+                        <p:selectOneMenu id="gameStadium" value="#{gameController.selected.gameStadium}" >
+                            <f:selectItems value="#{stadiumController.itemsAvailableSelectMany}"
                                            var="gameStadiumidItem"
-                                           itemValue="#{gameStadiumidItem}"/>
+                                           itemLabel="#{gameStadiumidItem.name}"/>
                         </p:selectOneMenu>
+                    
                     </p:panelGrid>
                     <p:commandButton actionListener="#{gameController.create}" value="#{bundle.Save}" update="display,:GameListForm:datalist,:growl" oncomplete="handleSubmit(args,'GameCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="GameCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('GameCreateDialog').hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

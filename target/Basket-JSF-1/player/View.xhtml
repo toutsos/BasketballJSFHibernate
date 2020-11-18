@@ -12,16 +12,22 @@
             <h:form id="PlayerViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{playerController.selected != null}">
+                        
                         <h:outputText value="#{bundle.ViewPlayerLabel_name}"/>
                         <h:outputText value="#{playerController.selected.name}" title="#{bundle.ViewPlayerTitle_name}"/>
+                        
                         <h:outputText value="#{bundle.ViewPlayerLabel_weight}"/>
                         <h:outputText value="#{playerController.selected.weight}" title="#{bundle.ViewPlayerTitle_weight}"/>
+                        
                         <h:outputText value="#{bundle.ViewPlayerLabel_height}"/>
                         <h:outputText value="#{playerController.selected.height}" title="#{bundle.ViewPlayerTitle_height}"/>
+                        
                         <h:outputText value="#{bundle.ViewPlayerLabel_age}"/>
                         <h:outputText value="#{playerController.selected.age}" title="#{bundle.ViewPlayerTitle_age}"/>
+                        
                         <h:outputText value="#{bundle.ViewPlayerLabel_phone}"/>
                         <h:outputText value="#{playerController.selected.phone}" title="#{bundle.ViewPlayerTitle_phone}"/>
+                        
                         <h:outputText value="#{bundle.ViewPlayerLabel_trainingsNumber}"/>
                         <h:outputText value="#{playerController.selected.trainingsNumber}" title="#{bundle.ViewPlayerTitle_trainingsNumber}"/>
                     </p:panelGrid>

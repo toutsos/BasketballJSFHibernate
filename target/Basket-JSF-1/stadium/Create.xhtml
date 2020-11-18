@@ -12,8 +12,6 @@
             <h:form id="StadiumCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{stadiumController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateStadiumLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{stadiumController.selected.id}" title="#{bundle.CreateStadiumTitle_id}" required="true" requiredMessage="#{bundle.CreateStadiumRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateStadiumLabel_name}" for="name" />
                         <p:inputText id="name" value="#{stadiumController.selected.name}" title="#{bundle.CreateStadiumTitle_name}" />
                     </p:panelGrid>

@@ -9,6 +9,8 @@ import entities.Game;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,18 @@ public class GameFacade extends AbstractFacade<Game> {
 
     public GameFacade() {
         super(Game.class);
+    }
+    
+    public void deleteGame (Game game){
+        em = getEntityManager();
+        try {
+            Query query = em.createQuery("DELETE FROM Game g WHERE g.id = :id");
+            query.setParameter("id", game.getId());
+            query.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
     
 }
