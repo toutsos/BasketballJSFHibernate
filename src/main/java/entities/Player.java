@@ -67,10 +67,10 @@ public class Player implements Serializable {
     @Column(name = "trainings_number")
     private Integer trainingsNumber;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
+    @OneToMany(mappedBy = "player")
     private List<PlayerTraining> playerTrainingList;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
+    @OneToMany(mappedBy = "player")
     private List<PlayerGame> playerGameList;
 
     public Player() {

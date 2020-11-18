@@ -59,7 +59,7 @@ public class Game implements Serializable {
     @JoinColumn(name = "gameStadium_id")
     private Stadium gameStadium;
     
-    @OneToMany(mappedBy = "game",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "game")
     private List<PlayerGame> playerGameList;
    
     public Game() {

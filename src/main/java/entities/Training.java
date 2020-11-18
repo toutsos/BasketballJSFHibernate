@@ -48,7 +48,7 @@ public class Training implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTimeTraining;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "training")
+    @OneToMany(mappedBy = "training")
     private List<PlayerTraining> playerTrainingList;
     
     @JoinColumn(name = "trainingStadium_id")

@@ -47,7 +47,7 @@ public class Stadium implements Serializable {
     @OneToMany(mappedBy = "gameStadium")
     private List<Game> gameList;
     
-    @OneToMany(mappedBy = "trainingStadium",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trainingStadium")
     private List<Training> trainingList;
 
     public Stadium() {

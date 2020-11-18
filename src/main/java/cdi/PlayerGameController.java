@@ -74,17 +74,17 @@ public class PlayerGameController implements Serializable {
         }
     }
 
-//    public void generatePlayers(Game selected) {
-//        List<Player> players = playerController.getSortPlayerFromTrainingNumber();
-//        try {
-//            for (int i = 0; i < players.size(); i++) {
-//                PlayerGame pg = new PlayerGame(selected, players.get(i));
-//                getFacade().create(pg);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void generatePlayers(Game selected) {
+        List<Player> players = playerController.getSortPlayerFromTrainingNumber();
+        try {
+            for (int i = 0; i < players.size(); i++) {
+                PlayerGame pg = new PlayerGame(selected, players.get(i));
+                getFacade().create(pg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<PlayerGame> getItems() {
         if (items == null) {
