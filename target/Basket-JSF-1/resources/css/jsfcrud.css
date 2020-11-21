@@ -1,5 +1,5 @@
 .ui-widget {
-    font-size: 12px !important;
+    font-size: 20px;
 }
 .ui-layout-north {
     z-index: 20 !important;
@@ -22,12 +22,10 @@ html, body {
 }
 
 html {
-    display: table;
     margin: auto;
 }
 
 body {
-    display: table-cell;
 }
 
 td{

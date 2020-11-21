@@ -1,9 +1,11 @@
 ejb/PlayerGameFacade.class
 ejb/AbstractFacade.class
 cdi/StadiumController$StadiumControllerConverter.class
+entities/Theme.class
 cdi/util/JsfUtil$PersistAction.class
 cdi/GameController.class
 cdi/CoachController$CoachControllerConverter.class
+cdi/CurrentUser.class
 entities/PlayerTraining.class
 cdi/TrainingController$TrainingControllerConverter.class
 entities/Game.class
@@ -14,6 +16,7 @@ cdi/PlayerGameController$PlayerGameControllerConverter.class
 cdi/PlayerController$PlayerControllerConverter.class
 ejb/PlayerTrainingFacade.class
 cdi/PlayerGameController.class
+cdi/ThemeController.class
 cdi/PlayerTrainingController.class
 entities/Stadium.class
 cdi/PlayerTrainingController$PlayerTrainingControllerConverter.class
